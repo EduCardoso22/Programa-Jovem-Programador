@@ -1,3 +1,5 @@
+# Exercicio 01 - Variaveis e Tipos de Dados
+
 a=1 #valor inteiro
 b='0' #string
 m1=m2=m3=0 #variaveis iguais
