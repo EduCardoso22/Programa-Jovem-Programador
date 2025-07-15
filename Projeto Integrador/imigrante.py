@@ -19,7 +19,7 @@ def NovoImigrante():
     # enviar os dados para o banco de dados
     cursor.execute(
         "INSERT INTO IMIGRANTE (NOME, NACIONALIDADE, DT_NASCIMENTO, DOCUMENTO) VALUES (%s, %s, %s, %s)",
-        (nome, nacionalidade, dataNascimento, documento),
+        (nome, nacionalidade, dataNascimento, documento)
     )
     conn.commit()  # Salvar as alterações no banco de dados
     print("")
@@ -68,7 +68,7 @@ def DetalheImigrante(id):
     # consultar os dados no banco de dados
     cursor.execute(
         "SELECT IDIMIGRANTE, NOME, NACIONALIDADE, DT_NASCIMENTO, DOCUMENTO FROM IMIGRANTE WHERE IDIMIGRANTE = %s",
-        (id,),
+        (id,)
     )
 
     for id, nome, nacionalidade, dataNascimento, documento in cursor.fetchall():
@@ -80,10 +80,7 @@ def DetalheImigrante(id):
 
     # fechar a conexão
     cursor.close()  # Fechar o cursor
-    conn.close()  # Fechar a conexão com o banco de dados
-
-    input("Pressione Enter para voltar ao menu...")
-
+    conn.close()  # Fechar a conexão com o banco de dadoss
 
 def AlterarImigrante(id):
     print("=======================")
@@ -104,7 +101,7 @@ def AlterarImigrante(id):
     # enviar os dados para o banco de dados
     cursor.execute(
         "UPDATE IMIGRANTE SET NOME = %s, NACIONALIDADE = %s, DT_NASCIMENTO = %s, DOCUMENTO = %s WHERE IDIMIGRANTE = %s",
-        (nome, nacionalidade, dataNascimento, documento, id),
+        (nome, nacionalidade, dataNascimento, documento, id)
     )
     conn.commit()  # Salvar as alterações no banco de dados
 

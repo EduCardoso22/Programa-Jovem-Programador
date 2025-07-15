@@ -1,6 +1,7 @@
 import os
 from imigranteTela import MenuImigrante
 from servicoTela import MenuServico
+from InformacaoTela import MenuInformacao
 
 
 def Limpa_Tela():
@@ -15,21 +16,18 @@ def Menu():
         # Criando o menu principal
         print("============== Menu Principal ==============")
         print("1. Imigrante")
-        print("2. Informação Complementar do Imigrante")
-        print("3. Serviços de Apoio")
-        print("4. Sair")
+        print("2. Serviços de Apoio")
+        print("3. Sair")
         print("============================================")
-        escolha = input("Escolha uma opção (1-4): ")
+        escolha = input("Escolha uma opção (1-3): ")
 
         if escolha == "1":
             MenuImigrante()
         elif escolha == "2":
-            print("Você escolheu Informação Complementar do Imigrante.")
-        elif escolha == "3":
             MenuServico()
-        elif escolha == "4":
+        elif escolha == "3":
             print("Saindo do programa. Até logo!")
-            break
+            
 
 
 if __name__ == "__main__":

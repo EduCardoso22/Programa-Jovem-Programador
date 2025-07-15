@@ -19,7 +19,7 @@ def NovoServico():
     # inserir os dados no banco de dados
     cursor.execute(
         "INSERT INTO SERVICO_APOIO (TIPO, NOME, ENDERECO, TELEFONE) VALUES (%s, %s, %s, %s)",
-        (tipo, nome, endereco, telefone),
+        (tipo, nome, endereco, telefone)
     )
     
     conn.commit()  # Confirmar a transação
@@ -66,7 +66,7 @@ def DetalheServico(id):
     # consultar os dados no banco de dados
     cursor.execute(
         "SELECT ID_SERVICO, TIPO, NOME, ENDERECO, TELEFONE FROM SERVICO_APOIO WHERE ID_SERVICO = %s",
-        (id,),
+        (id,)
     )
 
     servico = cursor.fetchone()
@@ -94,7 +94,7 @@ def AlterarServico(id):
     # consultar os dados no banco de dados
     cursor.execute(
         "SELECT TIPO, NOME, ENDERECO, TELEFONE FROM SERVICO_APOIO WHERE ID_SERVICO = %s",
-        (id,),
+        (id,)
     )
 
     servico = cursor.fetchone()
@@ -111,7 +111,7 @@ def AlterarServico(id):
         # atualizar os dados no banco de dados
         cursor.execute(
             "UPDATE SERVICO_APOIO SET TIPO = %s, NOME = %s, ENDERECO = %s, TELEFONE = %s WHERE ID_SERVICO = %s",
-            (novo_tipo, novo_nome, novo_endereco, novo_telefone, id),
+            (novo_tipo, novo_nome, novo_endereco, novo_telefone, id)
         )
         
         conn.commit()  # Confirmar a transação
@@ -140,7 +140,7 @@ def DeletaServico(id):
     # consultar os dados no banco de dados
     cursor.execute(
         "SELECT TIPO, NOME FROM SERVICO_APOIO WHERE ID_SERVICO = %s",
-        (id,),
+        (id,)
     )
     conn.commit()
 

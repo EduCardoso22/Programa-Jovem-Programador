@@ -1,5 +1,6 @@
 import os
 from imigrante import NovoImigrante, ListarImigrantes, DetalheImigrante, AlterarImigrante, DeletaImigrante
+from InformacaoTela import MenuInformacao
 
 
 def Limpa_Tela():
@@ -32,10 +33,11 @@ def MenuImigrante():
         elif escolha == "3":
             # chamando metodo que lista todos os imigrantes para que o usuário possa escolher um
             ListarImigrantes()
+            print("")
             id = input("Digite o ID do imigrante para ver os detalhes: ")
             Limpa_Tela()
             # chamando metodo para ver detalhes do imigrante
-            DetalheImigrante(id)
+            MenuInformacao(id)
         elif escolha == "4":
             #chamando o metodo para listar todos os imigrantes para escolher um imigrante
             ListarImigrantes()
@@ -51,7 +53,7 @@ def MenuImigrante():
             DeletaImigrante(id)
         elif escolha == "6":
             print("Voltando ao menu principal...")
-            break
+            return
         else:
             print("Opção inválida. Tente novamente.")
             MenuImigrante()
