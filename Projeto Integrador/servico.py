@@ -150,3 +150,25 @@ def DeletaServico(id):
 
     print("Serviço deletado com sucesso!")
     input("Pressione Enter para continuar...")
+
+def BuscarServicoPorTipo(tipo):
+    print("=======================")
+    print(f"Serviços do tipo: {tipo}")
+    print("=======================")
+    print("")   
+    tipo = input("Informe o tipo de servico (uma parte do texto): ")
+
+    #criando a conexao
+    conn = Conectar()
+    cursor = conn.cursor()
+
+    #enviando o camando para o banco de dados
+    cursor.execute(f"SELECT IDSERVICO_APOIO, TIPO, NOME, ENDERECO, TELEFONE FROM SERVICO_APOIO WHERE UPPER(TIPO) LIKE UPPER('%{tipo}%')")
+
+    #percorrendo o resultado e mostrando em tela
+    for id, tipo, nome, endereco, telefone in cursor.fetchall():
+        print(f"{id} - {tipo} - {nome} - {endereco} - {telefone}")
+
+    #fechando a conexao
+    cursor.close()
+    conn.close()
