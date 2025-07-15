@@ -52,3 +52,6 @@ def MenuImigrante():
         elif escolha == "6":
             print("Voltando ao menu principal...")
             break
+        else:
+            print("Opção inválida. Tente novamente.")
+            MenuImigrante()

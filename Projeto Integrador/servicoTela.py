@@ -56,3 +56,6 @@ def MenuServico():
         elif escolha == "7":
             print("Voltando ao menu principal...")
             break
+        else:
+            print("Opção inválida. Tente novamente.")
+            MenuServico()
