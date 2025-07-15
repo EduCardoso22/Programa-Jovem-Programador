@@ -65,7 +65,7 @@ def AlterarInformacao():
     print("===================================")
     print("")
 
-    id = input("Digite o ID da informação que deseja alterar: ")
+    idInformacao = input("Digite o ID da informação que deseja alterar: ")
     tipo = input("Digite o novo tipo de informação: ")
     descricao = input("Digite a nova descrição da informação: ")
     ano_inicio = input("Digite o novo ano de início: ")
@@ -80,7 +80,7 @@ def AlterarInformacao():
     # atualizar os dados no banco de dados
     cursor.execute(
         "UPDATE INFORMACAO SET TIPO = %s, DESCRICAO = %s, ANO_INICIO = %s, ANO_TERMINO = %s WHERE IDINFORMACAO = %s",
-        (tipo, descricao, ano_inicio, ano_termino, id)
+        (tipo, descricao, ano_inicio, ano_termino, idInformacao)
     )
     conn.commit()
     print("Informação complementar alterada com sucesso!")
@@ -89,13 +89,15 @@ def AlterarInformacao():
     cursor.close()
     conn.close()
 
+    input("Pressione Enter para continuar...")
+
 def ExcluirInformacao():
     print("===================================")
     print("Exclusão de Informação Complementar")
     print("===================================")
     print("")
     
-    id = input("Digite o ID da informação que deseja excluir: ")
+    idInformacao = input("Digite o ID da informação que deseja excluir: ")
 
     # criando conexão
     conn = Conectar()
@@ -104,7 +106,7 @@ def ExcluirInformacao():
     # excluir os dados do banco de dados
     cursor.execute(
         "DELETE FROM INFORMACAO WHERE IDINFORMACAO = %s",
-        (id,)
+        (idInformacao,)
     )
     conn.commit()
     print("Informação complementar excluída com sucesso!")
@@ -113,3 +115,4 @@ def ExcluirInformacao():
     cursor.close()
     conn.close()
 
+    input("Pressione Enter para continuar...")

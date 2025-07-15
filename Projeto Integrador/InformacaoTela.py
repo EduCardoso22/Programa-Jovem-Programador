@@ -16,14 +16,15 @@ def MenuInformacao(idImigrante):
         print("1. Cadastrar Informação Complementar")
         print("2. Alterar Informação Complementar")
         print("3. Excluir Informação Complementar")
-        print("4. Sair")
+        print("4. Listar Informações Complementares")
+        print("5. Sair")
         print("=============================================")
 
-        escolha = input("Escolha uma opção (1-4): ")
+        escolha = input("Escolha uma opção (1-5): ")
 
         if escolha == "1":
             # chamando metodo para cadastrar informação
-            NovaInformacao(id)
+            NovaInformacao(idImigrante)
         
         elif escolha == "2":
             # chamando metodo para alterar informação
@@ -34,6 +35,10 @@ def MenuInformacao(idImigrante):
             ExcluirInformacao()
         
         elif escolha == "4":
+            # chamando metodo para listar informações
+            ListarInformacao(idImigrante)
+        
+        elif escolha == "5":
             print("Voltando ao menu principal...")
             return
 
