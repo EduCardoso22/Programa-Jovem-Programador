@@ -25,13 +25,16 @@ def MenuImigrante():
 
         if escolha == "1":
             # chamando metodo para cadastrar imigrante
+            Limpa_Tela()
             NovoImigrante()
         elif escolha == "2":
             # chamando metodo para listar todos os imigrantes
+            Limpa_Tela()
             ListarImigrantes()
             input("Pressione Enter para continuar...")
         elif escolha == "3":
             # chamando metodo que lista todos os imigrantes para que o usuário possa escolher um
+            Limpa_Tela()
             ListarImigrantes()
             print("")
             id = input("Digite o ID do imigrante para ver os detalhes: ")
@@ -40,6 +43,7 @@ def MenuImigrante():
             MenuInformacao(id)
         elif escolha == "4":
             #chamando o metodo para listar todos os imigrantes para escolher um imigrante
+            Limpa_Tela()
             ListarImigrantes()
             id = input("Digite o ID do imigrante que deseja alterar: ")
             Limpa_Tela()
@@ -47,6 +51,7 @@ def MenuImigrante():
             AlterarImigrante(id)
         elif escolha == "5":
             #cchamando metodo para deletar imigrante
+            Limpa_Tela()
             ListarImigrantes()
             id = input("Digite o ID do imigrante que deseja deletar: ")
             Limpa_Tela()

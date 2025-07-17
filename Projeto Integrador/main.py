@@ -15,7 +15,7 @@ def Menu():
         Limpa_Tela()
         # Criando o menu principal
         print("============== Menu Principal ==============")
-        print("1. Imigrante")
+        print("1. Imigrantes")
         print("2. Serviços de Apoio")
         print("3. Sair")
         print("============================================")
