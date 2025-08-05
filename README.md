@@ -1,9 +1,7 @@
 
-**SENAC** Programa Jovem Programador - 2ª fase  
+<h1 align="center">SENAC Programa Jovem Programador</h1>
 
 ---
-
-<h1 align="center">Materiais de Aulas</h1>
 
 ## 1. Sobre o Repositório
 
