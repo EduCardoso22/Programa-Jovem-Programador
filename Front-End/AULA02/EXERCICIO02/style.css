@@ -1,0 +1,20 @@
+/* Estilo da página - Exercício 02 */
+
+body {
+    background-color: #373F51;
+    font-family: 'Times New Roman', Times, serif
+}
+
+nav {
+    background-color: #A9BCD0;
+    padding: 10px;
+    text-align: center;
+}
+
+main {
+    background-color: #A9BCD0;
+    padding: 20px;
+    margin: 20px auto;
+    width: 80%;
+    border-radius: 8px;
+}
