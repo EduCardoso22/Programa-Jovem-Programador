@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Sistema para lançamento de notas</title>
+</head>
+<body>
+    <h1>Sistema para lançamento de notas</h1>
+    <form method="POST" action="/cadastrar">
+        <p>
+            <label for="nome">Nome do aluno:</label>
+            <input type="text" id="nome" name="nome"/>
+        </p>
+        <p>
+            <label for="nota1">Informe a nota 01:</label>
+            <input type="number" step=".01" min="0" id="nota1" name="nota1"/>
+        </p>
+        <p>
+            <label for="nota2">Informe a nota 02:</label>
+            <input type="number" step=".01" min="0" id="nota2" name="nota2"/>
+        </p>
+        <p>
+            <label for="nota3">Informe a nota 03:</label>
+            <input type="number" step=".01" min="0" id="nota3" name="nota3"/>
+        </p>
+        <br>
+        <button type="submit">Enviar tudo e calcular média</button>
+    </form>
+    <br>
+    <p><b>{{ mensagem }}</b></p>
+    <br>
+    <p><b>Historico de notas</b></p>
+    <table>
+        <thead>
+            <tr><th>Aluno</th><th>Nota 1</th><th>Nota 2</th><th>Nota 3</th><th>Média</th><th>Resultado</th></tr>
+        </thead>
+        <tbody>
+        {% for nota in listaNotas %}
+        <tr>
+            <td>{{nota.nome}}</td>
+            <td>{{nota.nota1}}</td>
+            <td>{{nota.nota2}}</td>
+            <td>{{nota.nota3}}</td>
+            <td>{{nota.media}}</td>
+            <td>{{nota.resultado}}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

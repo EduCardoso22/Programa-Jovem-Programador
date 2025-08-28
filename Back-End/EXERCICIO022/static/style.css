@@ -1,0 +1,68 @@
+/* static/style.css */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f4f7f6;
+    color: #333;
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+h1 {
+    color: #2c3e50;
+    margin-bottom: 10px;
+}
+
+p {
+    color: #7f8c8d;
+    margin-bottom: 30px;
+}
+
+.product-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.product-table th, .product-table td {
+    padding: 15px;
+    border-bottom: 1px solid #ddd;
+}
+
+.product-table thead {
+    background-color: #3498db;
+    color: #ffffff;
+}
+
+.product-table th {
+    font-weight: 700;
+}
+
+.product-table th:last-child,
+.product-table td:last-child {
+    text-align: right;
+}
+
+.product-table td:last-child {
+    font-weight: 700;
+    color: #27ae60;
+}
+
+.product-table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.product-table tbody tr:hover {
+    background-color: #eaf5ff;
+}

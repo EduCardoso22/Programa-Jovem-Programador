@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil de Usuário</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <div class="user-card">
+        <div class="card-header">
+            <h2>Perfil de Usuário</h2>
+        </div>
+        <div class="card-body">
+            <div class="info-item">
+                <strong>Nome:</strong>
+                <p>{{ usuario.nome }}</p>
+            </div>
+            <div class="info-item">
+                <strong>Email:</strong>
+                <p>{{ usuario.email }}</p>
+            </div>
+            <div class="info-item">
+                <strong>Cidade:</strong>
+                <p>{{ usuario.cidade }}</p>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

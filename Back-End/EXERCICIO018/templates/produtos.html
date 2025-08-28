@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Produtos</title>
+</head>
+<body>
+    <h1>Produtos</h1>
+    <form method="POST" action="/cadastrar">
+        <p>
+            <label for="nome">Nome do produto:</label>
+            <input type="text" id="nome" name="nome"/>
+        </p>
+        <p>
+            <label for="preco">Informe o preço:</label>
+            <input type="number" step=".01" min="0" id="preco" name="preco"/>
+        </p>
+        <p>
+            <label for="categoria">Selecione a categoria:</label>
+            <select id="categoria" name="categoria">
+                <option value="Bebida">Bebida</option>
+                <option value="Salgado">Salgado</option>
+                <option value="Doces">Doces</option>
+                <option value="Outros">Outros</option>
+            </select>
+        </p>
+        <br>
+        <button type="submit">Salvar produto</button>
+    </form>
+    <br>
+    <p><b>Produtos</b></p>
+    <table>
+        <thead>
+            <tr>
+                <th>Produto</th>
+                <th>Preco</th>
+                <th>Categoria</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for produto in listaprodutos %}
+        <tr>
+            <td>{{produto.nome}}</td>
+            <td>{{produto.valor}}</td>
+            <td>{{produto.categoria}}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
