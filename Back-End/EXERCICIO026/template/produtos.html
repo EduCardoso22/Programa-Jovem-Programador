@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Gestão de Produtos</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+    <div class="container container-large">
+        <div class="header">
+            <h1>Gestão de Produtos</h1>
+            <a href="{{ url_for('logout') }}" class="btn btn-secondary">Sair da área restrita</a>
+        </div>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        {% for category, message in messages %}
+        <div class="alert alert-{{ category }}">{{ message }}</div>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+
+        <form id="product-form" method="post">
+            <table class="product-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Produto</th>
+                        <th>Categoria</th>
+                        <th>Valor</th>
+                        <th>Selecionar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for produto in lista_produtos %}
+                    <tr>
+                        <td>{{ produto.id }}</td>
+                        <td>{{ produto.nome }}</td>
+                        <td>{{ produto.categoria }}</td>
+                        <td>R$ {{ "%.2f"|format(produto.valor)|replace('.', ',') }}</td>
+                        <td><input type="radio" name="produto_id" value="{{ produto.id }}" required></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            <div class="actions">
+                <button type="button" onclick="submitForm('excluir')" class="btn btn-danger">Excluir</button>
+                <button type="button" onclick="submitForm('alterar')" class="btn btn-secondary">Alterar</button>
+                <a href="{{ url_for('novoproduto') }}" class="btn">Novo</a>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        function submitForm(action) {
+            const form = document.getElementById('product-form');
+            const selectedProduct = document.querySelector('input[name="produto_id"]:checked');
+
+            if (!selectedProduct) {
+                alert('Por favor, selecione um produto.');
+                return;
+            }
+
+            if (action === 'excluir') {
+                form.action = "{{ url_for('excluir_produto') }}";
+                form.submit();
+            } else if (action === 'alterar') {
+                const productId = selectedProduct.value;
+                window.location.href = "/alterar/" + productId;
+            }
+        }
+    </script>
+</body>
+
+</html>
