@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Bem-vindo</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Seja bem-vindo</h1>
+        <p>Servidor backend funcionando corretamente.</p>
+
+        {% if session.usuario_logado %}
+        <a href="{{ url_for('listar_produtos') }}" class="btn">Acessar Cadastro de Produtos</a>
+        <a href="{{ url_for('logout') }}" class="btn btn-secondary">Sair</a>
+        {% else %}
+        <a href="{{ url_for('login') }}" class="btn">Acesso ao Cadastro de Produtos (Login)</a>
+        <a href="{{ url_for('registro') }}" class="btn btn-secondary">Criar uma conta</a>
+        {% endif %}
+    </div>
+</body>
+
+</html>
