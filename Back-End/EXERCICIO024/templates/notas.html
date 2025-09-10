@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notas dos Alunos</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <div class="container">
+        <h1>Boletim da Turma</h1>
+        
+        <table class="grades-table">
+            <thead>
+                <tr>
+                    <th>Aluno</th>
+                    <th>Nota Final</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for aluno in alunos %}
+                
+                    {% if aluno.nota < 6 %}
+                        <tr class="reprovado">
+                    {% else %}
+                        <tr>
+                    {% endif %}
+                            <td>{{ aluno.nome }}</td>
+                            <td>{{ "%.1f"|format(aluno.nota)|replace('.', ',') }}</td>
+                        </tr>
+
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+</body>
+</html>

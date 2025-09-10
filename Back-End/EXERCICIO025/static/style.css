@@ -1,0 +1,60 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f4f7f6;
+    color: #333;
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+h1 {
+    color: #2c3e50;
+    margin-bottom: 30px;
+}
+
+.team-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.team-table th, .team-table td {
+    padding: 15px;
+    border-bottom: 1px solid #ddd;
+    vertical-align: middle;
+}
+
+.team-table thead {
+    background-color: #34495e;
+    color: #ffffff;
+}
+
+.team-table th {
+    font-weight: 700;
+}
+
+.team-table img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.team-table td:last-child {
+    font-weight: 700;
+    font-size: 1.1rem;
+    text-align: left;
+    padding-left: 20px;
+}

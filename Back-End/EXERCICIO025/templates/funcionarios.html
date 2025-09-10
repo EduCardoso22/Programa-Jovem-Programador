@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Funcionários</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <div class="container">
+        <h1>Nossa Equipe</h1>
+        
+        <table class="team-table">
+            <thead>
+                <tr>
+                    <th>Foto</th>
+                    <th>Nome</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for funcionario in funcionarios %}
+                <tr>
+                    <td>
+                        <img src="{{ url_for('static', filename='img/' + funcionario.foto) }}" alt="Foto de {{ funcionario.nome }}">
+                    </td>
+                    <td>{{ funcionario.nome }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,63 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f4f7f6;
+    color: #333;
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+h1 {
+    color: #2c3e50;
+    margin-bottom: 30px;
+}
+
+.grades-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.grades-table th, .grades-table td {
+    padding: 15px;
+    border-bottom: 1px solid #ddd;
+}
+
+.grades-table thead {
+    background-color: #34495e;
+    color: #ffffff;
+}
+
+.grades-table th {
+    font-weight: 700;
+}
+
+.grades-table td:last-child {
+    text-align: center;
+    font-weight: 700;
+}
+
+.grades-table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.grades-table tbody tr:hover {
+    background-color: #ecf0f1;
+}
+
+.grades-table tr.reprovado {
+    background-color: #f8d7da;
+    color: #721c24;
+    font-weight: bold;
+}
