@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Controle de Gastos</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .indicator-card {
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .indicator-card:hover {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body class="container mt-4">
+
+    <h1 class="text-center mb-4">Meu Controle de Gastos</h1>
+
+    <div class="row mb-4 text-center">
+        <div class="col-md-3">
+            <div id="card-educacao" class="card bg-primary text-white indicator-card" onclick="filtrarPorCategoria('Educacao')">
+                <div class="card-body">
+                    <h5 class="card-title">Educação</h5>
+                    <p id="valor-educacao" class="card-text fs-4">R$ 0,00</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div id="card-alimentacao" class="card bg-success text-white indicator-card" onclick="filtrarPorCategoria('Alimentacao')">
+                <div class="card-body">
+                    <h5 class="card-title">Alimentação</h5>
+                    <p id="valor-alimentacao" class="card-text fs-4">R$ 0,00</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div id="card-transporte" class="card bg-warning text-dark indicator-card" onclick="filtrarPorCategoria('Transporte')">
+                <div class="card-body">
+                    <h5 class="card-title">Transporte</h5>
+                    <p id="valor-transporte" class="card-text fs-4">R$ 0,00</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div id="card-lazer" class="card bg-info text-white indicator-card" onclick="filtrarPorCategoria('Lazer')">
+                <div class="card-body">
+                    <h5 class="card-title">Lazer</h5>
+                    <p id="valor-lazer" class="card-text fs-4">R$ 0,00</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <button class="btn btn-secondary mb-3" onclick="carregarGastos()">Mostrar Todos</button>
+
+
+    <div class="card">
+        <div class="card-header">
+            <h3>Cadastrar Novo Gasto</h3>
+        </div>
+        <div class="card-body">
+            <form id="formGastos" class="row g-3">
+                <input type="hidden" id="id">
+                
+                <div class="col-md-6">
+                    <label for="descricao" class="form-label">Descrição do Gasto:</label>
+                    <input type="text" id="descricao" class="form-control" placeholder="Ex: Almoço" required>
+                </div>
+                
+                <div class="col-md-6">
+                    <label for="categoria" class="form-label">Categoria:</label>
+                    <select id="categoria" class="form-select" required>
+                        <option value="">Selecione...</option>
+                        <option value="Educacao">Educação</option>
+                        <option value="Alimentacao">Alimentação</option>
+                        <option value="Transporte">Transporte</option>
+                        <option value="Lazer">Lazer</option>
+                    </select>
+                </div>
+                
+                <div class="col-md-6">
+                    <label for="valor" class="form-label">Valor (R$):</label>
+                    <input type="number" id="valor" class="form-control" step="0.01" placeholder="Ex: 29.50" required>
+                </div>
+                
+                <div class="col-md-6">
+                    <label for="data_gasto" class="form-label">Data do Gasto:</label>
+                    <input type="date" id="data_gasto" class="form-control" required>
+                </div>
+                
+                <div class="col-12">
+                    <button type="submit" class="btn btn-primary">Confirmar</button>
+                    <button type="button" class="btn btn-secondary" onclick="limparFormulario()">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <hr>
+
+    <h3 class="mt-4">Histórico de Gastos</h3>
+    <table class="table table-bordered table-striped mt-3">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Descrição</th>
+                <th>Categoria</th>
+                <th>Valor</th>
+                <th>Data</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody id="listaGastos"></tbody>
+    </table>
+
+    <script>
+        const API_URL = "http://127.0.0.1:5000/gastos";
+
+        const form = document.getElementById("formGastos");
+        const lista = document.getElementById("listaGastos");
+
+        const formatarMoeda = (valor) => {
+            return parseFloat(valor).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+        };
+
+        async function carregarIndicadores() {
+            const categorias = ['Educacao', 'Alimentacao', 'Transporte', 'Lazer'];
+            for (const categoria of categorias) {
+                const response = await fetch(`${API_URL}/valor/${categoria}`);
+                const data = await response.json();
+                const valor = data[0].valor || 0;
+                document.getElementById(`valor-${categoria.toLowerCase()}`).textContent = formatarMoeda(valor);
+            }
+        }
+        
+        async function carregarGastos(categoria = null) {
+            let url = `${API_URL}/gastos`;
+            if (categoria) {
+                url = `${API_URL}/gastos/${categoria}`; 
+            }
+            
+            const response = await fetch(url);
+            const gastos = await response.json();
+            
+            lista.innerHTML = "";
+            
+            gastos.forEach(gasto => {
+                const dataFormatada = new Date(gasto.data).toLocaleDateString('pt-BR', { timeZone: 'UTC' });
+
+                lista.innerHTML += `
+                    <tr>
+                        <td>${gasto.id}</td>
+                        <td>${gasto.descricao}</td>
+                        <td>${gasto.categoria}</td>
+                        <td>${formatarMoeda(gasto.valor)}</td>
+                        <td>${dataFormatada}</td>
+                        <td>
+                            <button class="btn btn-sm btn-warning" onclick="editarGasto(${gasto.id})">Alterar</button>
+                            <button class="btn btn-sm btn-danger" onclick="excluirGasto(${gasto.id})">Excluir</button>
+                        </td>
+                    </tr>
+                `;
+            });
+        }
+
+        function limparFormulario() {
+            form.reset();
+            document.getElementById("id").value = "";
+        }
+
+        async function editarGasto(id) {
+            const response = await fetch(`${API_URL}/gasto/${id}`);
+            const gasto = await response.json();
+
+            document.getElementById("id").value = gasto.id;
+            document.getElementById("descricao").value = gasto.descricao;
+            document.getElementById("categoria").value = gasto.categoria;
+            document.getElementById("valor").value = gasto.valor;
+            document.getElementById("data_gasto").value = gasto.data.split('T')[0];
+            
+            window.scrollTo(0, 0);
+        }
+
+        async function excluirGasto(id) {
+            if (confirm("Tem certeza que deseja excluir este gasto?")) {
+                await fetch(`${API_URL}/gasto/${id}`, {
+                    method: "DELETE",
+                });
+                carregarGastos();
+                carregarIndicadores();
+            }
+        }
+
+        function filtrarPorCategoria(categoria) {
+            carregarGastos(categoria);
+        }
+
+        form.onsubmit = async (e) => {
+            e.preventDefault();
+
+            const id = document.getElementById("id").value;
+            const descricao = document.getElementById("descricao").value;
+            const categoria = document.getElementById("categoria").value;
+            const valor = document.getElementById("valor").value;
+            const data_gasto = document.getElementById("data_gasto").value;
+
+            const metodo = id ? "PUT" : "POST";
+            const url = id ? `${API_URL}/gasto/${id}` : `${API_URL}/gasto`;
+
+            await fetch(url, {
+                method: metodo,
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ descricao, categoria, valor, data_gasto }),
+            });
+
+            limparFormulario();
+            carregarGastos();
+            carregarIndicadores();
+        };
+
+        document.addEventListener('DOMContentLoaded', () => {
+            carregarGastos();
+            carregarIndicadores();
+        });
+
+    </script>
+</body>
+</html>
