@@ -1,4 +1,4 @@
-DROP DATABASE IF EXISTS controle_gastos
+DROP DATABASE IF EXISTS controle_gastos;
 CREATE DATABASE controle_gastos;
 USE controle_gastos;
 

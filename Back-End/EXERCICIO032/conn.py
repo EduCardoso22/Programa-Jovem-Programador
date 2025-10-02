@@ -6,8 +6,8 @@ def conectar():
         conexao = mysql.connector.connect(
             host="localhost",
             user="root",
-            password="sua_senha",
-            database="nome_do_banco" 
+            password="root",
+            database="controle_gastos" 
         )
         return conexao
     except mysql.connector.Error as err:
